@@ -7,7 +7,6 @@
 
 #import "LPOrientationOperation.h"
 
-static NSString *const kSuccess = @"success";
 static NSString *const kDevice = @"device";
 static NSString *const kStatusBar = @"status_bar";
 static NSString *const kLeft = @"left";
@@ -53,7 +52,11 @@ static NSString *const kFaceUp = @"face up";
       /******************/
     case UIDeviceOrientationFaceDown: return kFaceDown;
     case UIDeviceOrientationFaceUp: return kFaceUp;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunreachable-code"
     default: return kUnknown;
+#pragma clang diagnostic pop
   }
 }
 

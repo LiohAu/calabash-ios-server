@@ -69,10 +69,8 @@
   NSMutableArray *views = [NSMutableArray arrayWithCapacity:32];
 
   NSArray *allWindows = [LPTouchUtils applicationWindows];
-  for (UIWindow *window in allWindows) {
-    [views addObjectsFromArray:[window subviews]];
-  }
-  NSArray *result = [parser evalWith:views];
+  
+  NSArray *result = [parser evalWith:allWindows];
   [parser release];
 
   return result;
@@ -109,11 +107,11 @@
   if (argc != [_arguments count] && *error != NULL) {
     *error = [NSError errorWithDomain:@"CalabashServer" code:1
                              userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Arity mismatch", @"reason",
-                                                                                 [NSString stringWithFormat:@"%@ applied to selector %@ with %i args",
-                                                                                                            self,
-                                                                                                            NSStringFromSelector(
-                                                                                                                    _selector),
-                                                                                                            argc], @"details",
+                                       [NSString stringWithFormat:@"%@ applied to selector %@ with %@ args",
+                                        self,
+                                        NSStringFromSelector(
+                                                             _selector),
+                                        @(argc)], @"details",
                                                                                  nil]];
     return nil;
   }

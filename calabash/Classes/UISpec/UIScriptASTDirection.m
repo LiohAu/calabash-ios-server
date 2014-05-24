@@ -26,7 +26,13 @@
     case UIScriptASTDirectionTypeParent:return @"parent";
     case UIScriptASTDirectionTypeChild:return @"child";
     case UIScriptASTDirectionTypeSibling:return @"sibling";
+    case UIScriptASTDirectionTypeAcc:return @"acc";
+    case UIScriptASTDirectionTypeAccParent:return @"accParent";
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunreachable-code"
     default:return @"<UNKNOWNDIRECTION";
+#pragma clang diagnostic pop
   }
 }
 

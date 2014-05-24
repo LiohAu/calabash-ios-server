@@ -8,11 +8,11 @@
 #import "CalabashServer.h"
 #import "LPRouter.h"
 #import "LPScreenshotRoute.h"
-#import "LPScreenshotRoute2.h"
 #import "LPMapRoute.h"
 #import "LPRecordRoute.h"
 #import "LPAsyncPlaybackRoute.h"
 #import "LPUserPrefRoute.h"
+#import "LPKeychainRoute.h"
 #import "LPAppPropertyRoute.h"
 #import "LPQueryLogRoute.h"
 #import "LPInterpolateRoute.h"
@@ -21,6 +21,7 @@
 #import "LPVersionRoute.h"
 #import "LPConditionRoute.h"
 #import "LPUIARoute.h"
+#import "LPUIATapRoute.h"
 #import "LPKeyboardRoute.h"
 #import "LPLocationRoute.h"
 #import "LPDebugRoute.h"
@@ -52,10 +53,6 @@
     [LPRouter addRoute:sr forPath:@"screenshot"];
     [sr release];
 
-    LPScreenshotRoute2 *sr2 = [LPScreenshotRoute2 new];
-    [LPRouter addRoute:sr2 forPath:@"screenshot2"];
-    [sr2 release];
-
     LPRecordRoute *rr = [LPRecordRoute new];
     [LPRouter addRoute:rr forPath:@"record"];
     [rr release];
@@ -71,6 +68,10 @@
     LPUserPrefRoute *bgr = [LPUserPrefRoute new];
     [LPRouter addRoute:bgr forPath:@"userprefs"];
     [bgr release];
+
+    LPKeychainRoute *keyr = [LPKeychainRoute new];
+    [LPRouter addRoute:keyr forPath:@"keychain"];
+    [keyr release];
 
     LPAppPropertyRoute *appr = [LPAppPropertyRoute new];
     [LPRouter addRoute:appr forPath:@"appproperty"];
@@ -107,6 +108,10 @@
     LPUIARoute *uia = [LPUIARoute new];
     [LPRouter addRoute:uia forPath:@"uia"];
     [uia release];
+
+    LPUIATapRoute *uiaTap = [LPUIATapRoute new];
+    [LPRouter addRoute:uiaTap forPath:@"uia-tap"];
+    [uiaTap release];
 
     LPLocationRoute *location = [LPLocationRoute new];
     [LPRouter addRoute:location forPath:@"location"];
@@ -167,7 +172,7 @@
 
   NSError *error = nil;
   if (![_httpServer start:&error]) {
-    NSLog(@"Error starting LPHTTP Server: %@", error);// %@", error);
+    NSLog(@"Error starting Calabash LPHTTP Server: %@", error);// %@", error);
   }
 }
 
