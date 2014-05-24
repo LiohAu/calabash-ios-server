@@ -77,8 +77,14 @@
 + (id) jsonifyObject:(id) object {
   if (!object) {return nil;}
   if ([object isKindOfClass:[UIColor class]]) {
-    //todo special handling
-    return [object description];
+      
+      CGFloat red, green, blue, alpha;
+      [(UIColor *)object getRed: &red green: &green blue: &blue alpha: &alpha];
+      return [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithFloat: red], @"red",
+              [NSNumber numberWithFloat: green], @"green",
+              [NSNumber numberWithFloat: blue], @"blue",
+              [NSNumber numberWithFloat: alpha], @"alpha",
+              nil];
   }
   if ([object isKindOfClass:[UIView class]]) {
     UIView *v = (UIView *) object;
